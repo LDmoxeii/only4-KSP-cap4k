@@ -3,10 +3,6 @@ plugins {
     application
 }
 
-repositories {
-    mavenCentral()
-}
-
 dependencies {
     implementation("org.yaml:snakeyaml")
     implementation(platform(libs.springBootDependencies))
@@ -16,13 +12,8 @@ dependencies {
     implementation(libs.druid)
     implementation(libs.mysql)
 
+    implementation(project(":only4-KSP-cap4k-adapter"))
+
     testImplementation(platform(libs.springBootDependencies))
     testImplementation(kotlin("test"))
-}
-
-tasks.test {
-    useJUnitPlatform()
-}
-kotlin {
-    jvmToolchain(17)
 }

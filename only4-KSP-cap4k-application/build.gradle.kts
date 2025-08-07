@@ -3,17 +3,8 @@ plugins {
     application
 }
 
-repositories {
-    mavenCentral()
-}
-
 dependencies {
-    testImplementation(kotlin("test"))
-}
+    implementation(project(":only4-KSP-cap4k-domain"))
 
-tasks.test {
-    useJUnitPlatform()
-}
-kotlin {
-    jvmToolchain(17)
+    testImplementation(kotlin("test"))
 }

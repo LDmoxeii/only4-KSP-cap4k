@@ -7,7 +7,19 @@ dependencyResolutionManagement {
     // Use Maven Central as the default repository (where Gradle will download dependencies) in all subprojects.
     @Suppress("UnstableApiUsage")
     repositories {
+        maven {
+            credentials {
+                username = "66fcda436f4c940bd2c091f4"
+                password = "zgg(Nvx0_cwN"
+//                username = providers.gradleProperty("aliyun.maven.username").orNull ?: "defaultUsername"
+//                password = providers.gradleProperty("aliyun.maven.password").orNull ?: "defaultPassword"
+            }
+            url = uri("https://packages.aliyun.com/67053c6149e9309ce56b9e9e/maven/cap4k")
+        }
         mavenCentral()
+        maven {
+            url = uri("https://maven.aliyun.com/repository/public")
+        }
     }
 }
 
