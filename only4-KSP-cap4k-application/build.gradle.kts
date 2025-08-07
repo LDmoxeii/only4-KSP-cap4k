@@ -4,7 +4,7 @@ plugins {
 }
 
 dependencies {
-    implementation(project(":only4-KSP-cap4k-domain"))
+    api(project(":only4-KSP-cap4k-domain"))
 
     testImplementation(kotlin("test"))
 }
