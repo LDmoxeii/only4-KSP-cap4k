@@ -1,0 +1,91 @@
+###
+POST {{host}}/role/createRole
+Content-Type: application/json
+
+{
+  "name": "测试聚合",
+  "description": "测试聚合描述",
+  "permissionCodes": []
+}
+
+###
+POST {{host}}/role/getAllRoles
+
+###
+POST {{host}}/role/getRolesByCondition
+Content-Type: application/json
+
+{
+  "name": "测试聚合",
+  "description": "",
+  "permissionCodes": []
+}
+
+###
+POST {{host}}/role/getRoleById
+Content-Type: application/json
+
+{
+  "roleId": 201714621399171072
+}
+
+###
+POST {{host}}/role/getRolePermissionsById
+Content-Type: application/json
+
+{
+  "roleId": 0
+}
+
+###
+POST {{host}}/role/updateRoleInfo
+Content-Type: application/json
+
+{
+  "roleId": 201739262410932224,
+  "name": "测试更新详情",
+  "description": "测试更新详情"
+}
+
+###
+POST {{host}}/role/updateRolePermissions
+Content-Type: application/json
+
+{
+  "roleId": 201739262410932224,
+  "permissionCodes": [
+    "permission:create",
+    "permission:update",
+    "permission:delete"
+  ]
+}
+
+###
+POST {{host}}/role/deleteRole
+Content-Type: application/json
+
+{
+  "roleId": 0
+}
+
+###
+POST {{host}}/test
+
+<> 2025-08-10T033728.200.txt
+
+###
+POST {{host}}/role/getRoleById
+Content-Type: application/json
+
+{
+  "roleId": 139861418236182528
+}
+
+###
+POST {{host}}/cap4j-ddd-mvc-example/test/role
+Content-Type: application/json
+
+"norm"
+
+###
+POST {{host}}/role/createRole

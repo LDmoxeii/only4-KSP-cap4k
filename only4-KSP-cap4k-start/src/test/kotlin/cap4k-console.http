@@ -1,0 +1,12 @@
+###
+POST {{host}}/cap4j/console/request/search
+    ?uuid={uuid}&type={type}&state={state}&scheduleAt={scheduleAtBegin}&
+    scheduleAt={scheduleAtEnd}&pageSize={pageSize}&pageNum={pageNum}
+
+###
+POST {{host}}/cap4j/console/request/retry
+    ?uuid=1559b590-0054-4334-8552-3657e8cad5a4
+
+###
+POST {{host}}/cap4j/console/request/search
+    ?state=-3

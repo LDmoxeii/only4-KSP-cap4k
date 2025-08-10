@@ -1,14 +1,15 @@
 plugins {
     id("buildsrc.convention.kotlin-jvm")
-    application
+    kotlin("kapt")
 }
 
 dependencies {
-    api(platform(libs.springBootDependencies))
-    implementation(libs.sringDataJpa)
+    api(platform(libs.spring.boot.dependencies))
+    compileOnly(libs.spring.data)
 
-    api("com.only4:cap4k-ddd-starter:1.2.3")
-//    implementation("com.only4:ddd-core:1.2.3")
+    api(libs.annotation)
+    api("com.querydsl:querydsl-jpa:5.0.0:jakarta")
+    kapt("com.querydsl:querydsl-apt:5.0.0:jakarta")
 
-//    testImplementation(kotlin("test"))
+    api(libs.ddd.starter)
 }

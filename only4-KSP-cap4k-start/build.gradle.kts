@@ -1,19 +1,15 @@
 plugins {
     id("buildsrc.convention.kotlin-jvm")
-    application
+    alias(libs.plugins.spring.boot)
+    alias(libs.plugins.spring.dependency.management)
 }
 
 dependencies {
     implementation("org.yaml:snakeyaml")
-    implementation(platform(libs.springBootDependencies))
-
-    implementation(libs.springAutoConfiguration)
-    implementation(libs.springWeb)
-    implementation(libs.druid)
-    implementation(libs.mysql)
-
-    implementation(project(":only4-KSP-cap4k-adapter"))
-
-    testImplementation(platform(libs.springBootDependencies))
-    testImplementation(kotlin("test"))
+    api(libs.spring.actuator)
+    api(libs.spring.configuration.processor)
+    api(libs.cap4k.console)
+    api(project(":only4-KSP-cap4k-adapter"))
+    api(project(":only4-KSP-cap4k-application"))
+    api(project(":only4-KSP-cap4k-domain"))
 }

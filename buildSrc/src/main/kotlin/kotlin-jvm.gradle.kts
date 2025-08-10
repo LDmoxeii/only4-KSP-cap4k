@@ -14,26 +14,22 @@ plugins {
     kotlin("plugin.jpa")
 }
 
+group = "com.only4"
+version = "0.1.0-SNAPSHOT"
+
 kotlin {
     // Use a specific Java version to make it easier to work in different environments.
     jvmToolchain(17)
 }
 
 tasks.withType<Test>().configureEach {
-    // Configure all test Gradle tasks to use JUnitPlatform.
     useJUnitPlatform()
-
-    // 增加测试超时时间（10分钟）
     timeout.set(Duration.ofMinutes(10))
-
-    // 配置JVM内存和参数
     jvmArgs(
-        "-Xmx2g",           // 最大堆内存2GB
-        "-Xms512m",         // 初始堆内存512MB
-        "-XX:MaxMetaspaceSize=512m"  // 元空间最大512MB
+        "-Xmx2g",
+        "-Xms512m",
+        "-XX:MaxMetaspaceSize=512m",
     )
-
-    // Log information about all test results, not only the failed ones.
     testLogging {
         events(
             TestLogEvent.FAILED,

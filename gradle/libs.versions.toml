@@ -5,35 +5,56 @@
 [versions]
 # Kotlin ecosystem
 kotlin = "2.1.20"
-kotlinxDatetime = "0.6.1"
-kotlinxSerializationJSON = "1.7.3"
-kotlinxCoroutines = "1.9.0"
+ksp = "2.2.0-2.0.2"
 
 # Spring framework
-springBoot = "3.1.12"
+spring-boot = "3.1.12"
+spring-dependency-management = "1.1.3"
+blazebit = "1.6.12"
+
+only4 = "0.2.3-SNAPSHOT"
+
+# Testing
+junit = "5.13.4"
+mockk = "1.13.8"
+kotlin-compile-testing = "0.8.0"
 
 [libraries]
-kotlinGradlePlugin = { module = "org.jetbrains.kotlin:kotlin-gradle-plugin", version.ref = "kotlin" }
-kotlinxDatetime = { module = "org.jetbrains.kotlinx:kotlinx-datetime", version.ref = "kotlinxDatetime" }
-kotlinxSerialization = { module = "org.jetbrains.kotlinx:kotlinx-serialization-json", version.ref = "kotlinxSerializationJSON" }
-kotlinxCoroutines = { module = "org.jetbrains.kotlinx:kotlinx-coroutines-core", version.ref = "kotlinxCoroutines" }
+kotlin-gradle-plugin = { module = "org.jetbrains.kotlin:kotlin-gradle-plugin", version.ref = "kotlin" }
+kotlin-allopen-plugin = { module = "org.jetbrains.kotlin:kotlin-allopen", version.ref = "kotlin" }
+kotlin-noarg-plugin = { module = "org.jetbrains.kotlin:kotlin-noarg", version.ref = "kotlin" }
 
 # Spring framework
-springBootDependencies = { module = "org.springframework.boot:spring-boot-dependencies", version.ref = "springBoot" }
-springAutoConfiguration = { module = "org.springframework.boot:spring-boot-autoconfigure" }
+spring-boot-dependencies = { module = "org.springframework.boot:spring-boot-dependencies", version.ref = "spring-boot" }
+spring-actuator = { module = "org.springframework.boot:spring-boot-actuator" }
+spring-configuration-processor = { module = "org.springframework.boot:spring-boot-configuration-processor" }
+spring-web = { module = "org.springframework.boot:spring-boot-starter-web" }
+spring-validation = { module = "org.springframework.boot:spring-boot-starter-validation" }
+spring-data = { module = "org.springframework.boot:spring-boot-starter-data-jpa" }
 
-springWeb = { module = "org.springframework.boot:spring-boot-starter-web" }
+annotation = { module = "jakarta.annotation:jakarta.annotation-api" }
+blazebit-persistence-querydsl = { module = "com.blazebit:blaze-persistence-integration-querydsl-expressions-jakarta", version.ref = "blazebit" }
+blazebit-persistence-hibernate = { module = "com.blazebit:blaze-persistence-integration-hibernate-6.2", version.ref = "blazebit" }
 
-sringDataJpa = { module = "org.springframework.boot:spring-boot-starter-data-jpa" }
+
+ddd-starter = { module = "com.only4:cap4k-ddd-starter", version.ref = "only4" }
+#ddd-starter = { module = "io.github.netcorepal:cap4j-ddd-starter", version = "3.1.0-alpha-2" }
+
+cap4k-console = { module = "com.only4:cap4k-ddd-console", version.ref = "only4" }
 
 druid = { module = "com.alibaba:druid-spring-boot-starter", version = "1.2.8" }
-mysql = { module = "mysql:mysql-connector-java", version = "5.1.46" }
+mysql = { module = "com.mysql:mysql-connector-j", version = "8.1.0" }
 
-# Libraries can be bundled together for easier import
-[bundles]
-kotlinxEcosystem = ["kotlinxDatetime", "kotlinxSerialization", "kotlinxCoroutines"]
+# Testing
+junit-bom = { module = "org.junit:junit-bom", version.ref = "junit" }
+kotlin-compile-testing = { module = "dev.zacsweers.kctfork:ksp", version.ref = "kotlin-compile-testing" }
+mockk = { module = "io.mockk:mockk", version.ref = "mockk" }
 
 [plugins]
-kotlinPluginSerialization = { id = "org.jetbrains.kotlin.plugin.serialization", version.ref = "kotlin" }
-kotlinPluginSpring = { id = "org.jetbrains.kotlin.plugin.spring", version.ref = "kotlin" }
-kotlinPluginJpa = { id = "org.jetbrains.kotlin.plugin.jpa", version.ref = "kotlin" }
+kotlin = { id = "org.jetbrains.kotlin.jvm", version.ref = "kotlin" }
+kotlin-spring = { id = "org.jetbrains.kotlin.plugin.spring", version.ref = "kotlin" }
+kotlin-jpa = { id = "org.jetbrains.kotlin.plugin.jpa", version.ref = "kotlin" }
+ksp = { id = "com.google.devtools.ksp", version.ref = "ksp" }
+kotlin-kapt = { id = "org.jetbrains.kotlin.kapt", version.ref = "kotlin" }
+spring-boot = { id = "org.springframework.boot", version.ref = "spring-boot" }
+spring-dependency-management = { id = "io.spring.dependency-management", version.ref = "spring-dependency-management" }

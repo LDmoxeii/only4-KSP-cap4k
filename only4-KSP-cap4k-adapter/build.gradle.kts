@@ -1,18 +1,15 @@
 plugins {
     id("buildsrc.convention.kotlin-jvm")
-    application
 }
 
 dependencies {
-    implementation(platform(libs.springBootDependencies))
+    api(libs.spring.data)
+    api(libs.spring.web)
+    api(libs.druid)
+    api(libs.mysql)
 
-    implementation(libs.springAutoConfiguration)
-    implementation(libs.springWeb)
-    implementation(libs.sringDataJpa)
-    implementation(libs.druid)
-    implementation(libs.mysql)
+    api(libs.blazebit.persistence.hibernate)
+    implementation(libs.blazebit.persistence.querydsl)
 
-    implementation(project(":only4-KSP-cap4k-application"))
-
-    testImplementation(kotlin("test"))
+    api(project(":only4-KSP-cap4k-application"))
 }
