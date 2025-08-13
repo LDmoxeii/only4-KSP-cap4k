@@ -12,16 +12,9 @@ class GetAllRolesQryHandler(
     private val queryFactory: JPAQueryFactory,
 
     ) : Query<GetAllRolesQry.Request, GetAllRolesQry.Response> {
-    override fun exec(request: GetAllRolesQry.Request): GetAllRolesQry.Response {
-        val roles = with(QRole.role) {
-            queryFactory.selectFrom(this)
-                .fetch()
+    override fun exec(request: GetAllRolesQry.Request): GetAllRolesQry.Response =
+        with(QRole.role) {
+            val roles = queryFactory.selectFrom(this).fetch()
+            GetAllRolesQry.Response(roles)
         }
-
-        return GetAllRolesQry.Response(
-            roles
-        )
-    }
-
-
 }

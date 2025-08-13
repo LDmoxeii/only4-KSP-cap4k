@@ -10,14 +10,11 @@ import org.springframework.stereotype.Service
 class RoleExistsByIdQryHandler(
     private val queryFactory: JPAQueryFactory,
 ) : Query<RoleExistsByIdQry.Request, RoleExistsByIdQry.Response> {
-    override fun exec(request: RoleExistsByIdQry.Request): RoleExistsByIdQry.Response {
-        val exists = with(QRole.role) {
-            queryFactory.selectFrom(this)
+    override fun exec(request: RoleExistsByIdQry.Request): RoleExistsByIdQry.Response =
+        with(QRole.role) {
+            val exists = queryFactory.selectFrom(this)
                 .where(id.eq(request.roleId))
                 .fetchFirst() != null
+            RoleExistsByIdQry.Response(exists)
         }
-        return RoleExistsByIdQry.Response(
-            exists = exists
-        )
-    }
 }

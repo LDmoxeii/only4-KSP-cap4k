@@ -15,6 +15,14 @@ import java.time.LocalDateTime
 @SQLDelete(sql = "update `role` set `del_flag` = 1 where `id` = ? ")
 @Where(clause = "`del_flag` = 0")
 class Role(
+    @OneToMany(
+        cascade = [CascadeType.ALL],
+        fetch = FetchType.LAZY,
+        orphanRemoval = true
+    )
+    @Fetch(FetchMode.JOIN)
+    @JoinColumn(name = "`role_id`", nullable = false)
+    val rolePermissions: MutableList<RolePermission>,
     /**
      * ID
      * bigint
@@ -55,13 +63,4 @@ class Role(
      */
     @Column(name = "`del_flag`")
     var delFlag: Boolean = false,
-
-    @OneToMany(
-        cascade = [CascadeType.ALL],
-        fetch = FetchType.LAZY,
-        orphanRemoval = true
-    )
-    @Fetch(FetchMode.SUBSELECT)
-    @JoinColumn(name = "`role_id`", nullable = false)
-    val rolePermissions: MutableList<RolePermission>,
 )

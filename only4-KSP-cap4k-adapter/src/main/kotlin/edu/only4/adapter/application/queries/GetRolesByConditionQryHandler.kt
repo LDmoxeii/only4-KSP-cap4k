@@ -10,8 +10,8 @@ import org.springframework.stereotype.Service
 class GetRolesByConditionQryHandler(
     private val queryFactory: JPAQueryFactory,
 ) : Query<GetRolesByConditionQry.Request, GetRolesByConditionQry.Response> {
-    override fun exec(request: GetRolesByConditionQry.Request): GetRolesByConditionQry.Response {
-        val roles = with(QRole.role) {
+    override fun exec(request: GetRolesByConditionQry.Request): GetRolesByConditionQry.Response =
+        with(QRole.role) {
             val from = queryFactory.selectFrom(this)
             if (request.name.isNotBlank()) {
                 from.where(name.containsIgnoreCase(request.name))
@@ -19,11 +19,10 @@ class GetRolesByConditionQryHandler(
             if (request.description.isNotBlank()) {
                 from.where(description.containsIgnoreCase(request.description))
             }
-            from.fetch()
-        }
+            val roles = from.fetch()
 
-        return GetRolesByConditionQry.Response(
-            roles = roles
-        )
-    }
+            GetRolesByConditionQry.Response(
+                roles = roles
+            )
+        }
 }

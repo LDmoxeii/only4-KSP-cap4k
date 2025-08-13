@@ -36,7 +36,7 @@ spring:
       min-evictable-idle-time-millis: 43200000
       max-evictable-idle-time-millis: 86400000
   jpa:
-    open-in-view: true
+    open-in-view: false
     hibernate:
       ddl-auto: none
     show-sql: false
