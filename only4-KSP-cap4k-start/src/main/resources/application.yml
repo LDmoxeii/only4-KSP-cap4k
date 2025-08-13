@@ -80,6 +80,18 @@ management:
     redis:
       enabled: false
 
+jimmer:
+
+  # This is very important,
+  # With this configuration,
+  # `jimmer-spring-starter` will create `KSqlClient` for kotlin;
+  # otherwise, it will create `JSqlClient` for java.
+  language: kotlin
+
+  database-validation-mode: ERROR
+  show-sql: true
+  pretty-sql: true
+
 cap4k:
   ddd:
     archinfo:

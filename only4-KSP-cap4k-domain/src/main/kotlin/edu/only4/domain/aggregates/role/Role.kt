@@ -22,7 +22,7 @@ class Role(
     )
     @Fetch(FetchMode.JOIN)
     @JoinColumn(name = "`role_id`", nullable = false)
-    val rolePermissions: MutableList<RolePermission>,
+    var rolePermissions: List<RolePermission>,
     /**
      * ID
      * bigint
