@@ -2,8 +2,10 @@ package edu.only4.domain.aggregates.role
 
 import com.only4.cap4k.ddd.core.domain.aggregate.annotation.Aggregate
 import jakarta.persistence.*
-import jakarta.persistence.Table
-import org.hibernate.annotations.*
+import org.hibernate.annotations.DynamicInsert
+import org.hibernate.annotations.DynamicUpdate
+import org.hibernate.annotations.SQLDelete
+import org.hibernate.annotations.Where
 
 
 @Aggregate(
@@ -28,10 +30,9 @@ class RolePermission(
      * ID
      * bigint
      */
-    @Id @GeneratedValue(generator = "com.only4.cap4k.ddd.domain.distributed.SnowflakeIdentifierGenerator") @GenericGenerator(
-        name = "com.only4.cap4k.ddd.domain.distributed.SnowflakeIdentifierGenerator",
-        strategy = "com.only4.cap4k.ddd.domain.distributed.SnowflakeIdentifierGenerator"
-    ) @Column(name = "`id`")
+    @Id
+    @GeneratedValue(generator = "snowflake")
+    @Column(name = "`id`")
     var id: Long? = null,
 
     /**

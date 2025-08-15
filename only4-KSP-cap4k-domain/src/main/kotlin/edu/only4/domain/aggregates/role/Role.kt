@@ -28,11 +28,7 @@ class Role(
      * bigint
      */
     @Id
-    @GeneratedValue(generator = "com.only4.cap4k.ddd.domain.distributed.SnowflakeIdentifierGenerator")
-    @GenericGenerator(
-        name = "com.only4.cap4k.ddd.domain.distributed.SnowflakeIdentifierGenerator",
-        strategy = "com.only4.cap4k.ddd.domain.distributed.SnowflakeIdentifierGenerator"
-    )
+    @GeneratedValue(generator = "snowflake")
     @Column(name = "`id`")
     var id: Long? = null,
 
