@@ -42,6 +42,7 @@ class Role(
      * 角色名
      * varchar(255)
      */
+    @NaturalId
     @Basic(optional = false)
     @Column(name = "`name`")
     var name: String = "",
@@ -61,4 +62,9 @@ class Role(
     @Basic(optional = false)
     @Column(name = "`created_at`")
     var createdAt: LocalDateTime = LocalDateTime.now(),
-)
+) {
+    override fun equals(other: Any?) =
+        this === other || (other is Role && name == other.name)
+
+    override fun hashCode() = name.hashCode()
+}

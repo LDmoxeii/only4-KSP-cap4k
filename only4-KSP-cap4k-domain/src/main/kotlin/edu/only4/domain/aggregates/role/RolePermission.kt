@@ -2,10 +2,8 @@ package edu.only4.domain.aggregates.role
 
 import com.only4.cap4k.ddd.core.domain.aggregate.annotation.Aggregate
 import jakarta.persistence.*
-import org.hibernate.annotations.DynamicInsert
-import org.hibernate.annotations.DynamicUpdate
-import org.hibernate.annotations.SQLDelete
-import org.hibernate.annotations.Where
+import jakarta.persistence.Table
+import org.hibernate.annotations.*
 
 
 @Aggregate(
@@ -39,7 +37,13 @@ class RolePermission(
      * 权限编码
      * varchar(255)
      */
+    @NaturalId
     @Basic(optional = false)
     @Column(name = "`permission_code`")
     var permissionCode: String = "",
-)
+) {
+    override fun equals(other: Any?) =
+        this === other || (other is RolePermission && permissionCode == other.permissionCode)
+
+    override fun hashCode() = permissionCode.hashCode()
+}
