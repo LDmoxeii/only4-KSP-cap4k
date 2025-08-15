@@ -10,7 +10,8 @@ dependencies {
     api(libs.spring.validation)
     api(project(":only4-KSP-cap4k-domain"))
 
-    api("org.babyfish.jimmer:jimmer-spring-boot-starter:${jimmerVersion}")
+    implementation("org.babyfish.jimmer:jimmer-core-kotlin:${jimmerVersion}")
+    compileOnly("org.babyfish.jimmer:jimmer-sql-kotlin:${jimmerVersion}")
     ksp("org.babyfish.jimmer:jimmer-ksp:${jimmerVersion}")
 }
 
