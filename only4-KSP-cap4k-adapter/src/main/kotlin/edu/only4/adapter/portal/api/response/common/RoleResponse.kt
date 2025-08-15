@@ -9,6 +9,5 @@ class RoleResponse(
 
 class RolePermissionResponse(
     val code: String,
-    val description: String,
     val assigned: Boolean,
 )

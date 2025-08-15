@@ -31,7 +31,6 @@ class GetAllRolesQryHandler(
                     JRolePermissionDraft.Builder()
                         .id(permission.id)
                         .permissionCode(permission.permissionCode)
-                        .permissionRemark(permission.permissionRemark)
                         .build()
                 })
                 .build()

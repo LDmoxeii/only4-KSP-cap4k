@@ -33,7 +33,6 @@ class RoleController {
             .map {
                 RolePermission(
                     permissionCode = it.code,
-                    permissionRemark = it.remark,
                 )
             }
         Mediator.cmd.async(
@@ -50,13 +49,12 @@ class RoleController {
         val result = Mediator.qry.send(GetAllRolesQry.Request()).roles
             .map { role ->
                 RoleResponse(
-                    id = role.id ?: throw IllegalStateException("Role ID cannot be null"),
+                    id = role.id,
                     name = role.name,
                     description = role.description ?: "",
                     permissionCodes = role.rolePermissions.map { permission ->
                         RolePermissionResponse(
                             code = permission.permissionCode,
-                            description = permission.permissionRemark ?: "",
                             assigned = true
                         )
                     }
@@ -81,10 +79,9 @@ class RoleController {
                     id = role.id ?: throw IllegalStateException("Role ID cannot be null"),
                     name = role.name,
                     description = role.description ?: "",
-                    permissionCodes = role.rolePermissions!!.map { permission ->
+                    permissionCodes = role.rolePermissions.map { permission ->
                         RolePermissionResponse(
                             code = permission.permissionCode,
-                            description = permission.permissionRemark ?: "",
                             assigned = true
                         )
                     }
@@ -108,10 +105,9 @@ class RoleController {
                 id = role.id ?: throw IllegalStateException("Role ID cannot be null"),
                 name = role.name,
                 description = role.description ?: "",
-                permissionCodes = role.rolePermissions!!.map { permission ->
+                permissionCodes = role.rolePermissions.map { permission ->
                     RolePermissionResponse(
                         code = permission.permissionCode,
-                        description = permission.permissionRemark ?: "",
                         assigned = true
                     )
                 }
@@ -129,10 +125,9 @@ class RoleController {
 
         val permissionCodes = Permission.getAllPermission().map { it.code }.toSet()
 
-        val result = role.rolePermissions!!.map { rolePermission ->
+        val result = role.rolePermissions.map { rolePermission ->
             RolePermissionResponse(
                 code = rolePermission.permissionCode,
-                description = rolePermission.permissionRemark ?: "",
                 assigned = permissionCodes.contains(rolePermission.permissionCode)
             )
         }
@@ -159,7 +154,6 @@ class RoleController {
             .map {
                 RolePermission(
                     permissionCode = it.code,
-                    permissionRemark = it.remark,
                 )
             }
         Mediator.cmd.async(

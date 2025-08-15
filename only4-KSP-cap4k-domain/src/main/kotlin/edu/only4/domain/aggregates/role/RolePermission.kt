@@ -39,20 +39,7 @@ class RolePermission(
      * 权限编码
      * varchar(255)
      */
+    @Basic(optional = false)
     @Column(name = "`permission_code`")
     var permissionCode: String = "",
-
-    /**
-     * 权限备注
-     * varchar(255)
-     */
-    @Column(name = "`permission_remark`")
-    var permissionRemark: String? = null,
-
-    /**
-     * 逻辑删除
-     * tinyint(1)
-     */
-    @Column(name = "`del_flag`")
-    var delFlag: Boolean = false,
 )

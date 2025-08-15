@@ -14,7 +14,7 @@ class RoleFactory : AggregateFactory<RoleFactory.Payload, Role> {
         return Role(
             name = payload.name,
             description = payload.description,
-            rolePermissions = payload.permissions
+            rolePermissions = payload.permissions.toMutableList()
         )
     }
 
@@ -22,6 +22,6 @@ class RoleFactory : AggregateFactory<RoleFactory.Payload, Role> {
     class Payload(
         val name: String,
         val description: String,
-        val permissions: MutableList<RolePermission>,
+        val permissions: List<RolePermission>,
     ) : AggregatePayload<Role>
 }

@@ -7,7 +7,13 @@ import jakarta.persistence.Table
 import org.hibernate.annotations.*
 import java.time.LocalDateTime
 
-@Aggregate(aggregate = "Role", name = "Role", root = true, type = Aggregate.TYPE_ENTITY, description = "角色表")
+@Aggregate(
+    aggregate = "Role",
+    name = "Role",
+    root = true,
+    type = Aggregate.TYPE_ENTITY,
+    description = "角色表"
+)
 @Entity
 @Table(name = "`role`")
 @DynamicInsert
@@ -20,9 +26,9 @@ class Role(
         fetch = FetchType.LAZY,
         orphanRemoval = true
     )
-    @Fetch(FetchMode.JOIN)
-    @JoinColumn(name = "`role_id`", nullable = false)
-    var rolePermissions: List<RolePermission>,
+    @Fetch(FetchMode.SUBSELECT)
+    @JoinColumn(name = "`role_id`")
+    var rolePermissions: MutableList<RolePermission> = mutableListOf(),
     /**
      * ID
      * bigint
@@ -36,6 +42,7 @@ class Role(
      * 角色名
      * varchar(255)
      */
+    @Basic(optional = false)
     @Column(name = "`name`")
     var name: String = "",
 
@@ -43,6 +50,7 @@ class Role(
      * 角色描述
      * varchar(255)
      */
+    @Basic(optional = true)
     @Column(name = "`description`")
     var description: String? = null,
 
@@ -50,13 +58,7 @@ class Role(
      * 创建时间
      * timestamp
      */
+    @Basic(optional = false)
     @Column(name = "`created_at`")
     var createdAt: LocalDateTime = LocalDateTime.now(),
-
-    /**
-     * 逻辑删除
-     * tinyint(1)
-     */
-    @Column(name = "`del_flag`")
-    var delFlag: Boolean = false,
 )
