@@ -3,7 +3,7 @@ POST {{host}}/role/createRole
 Content-Type: application/json
 
 {
-  "name": "测试聚合",
+  "name": "聚合方式创建新实例",
   "description": "测试聚合描述",
   "permissionCodes": []
 }
@@ -24,7 +24,7 @@ POST {{host}}/role/getRoleById
 Content-Type: application/json
 
 {
-  "roleId": 203870171763675136
+  "roleId": 203967287290953728
 }
 
 ### 获取角色权限
@@ -32,7 +32,7 @@ POST {{host}}/role/getRolePermissionsById
 Content-Type: application/json
 
 {
-  "roleId": 203870171763675136
+  "roleId": 203967287290953728
 }
 
 ### 更新角色信息
@@ -40,8 +40,8 @@ POST {{host}}/role/updateRoleInfo
 Content-Type: application/json
 
 {
-  "roleId": 203870171763675136,
-  "description": "测试更新详情cd "
+  "roleId": 203967287290953728,
+  "description": "测试强类型ID聚合查询 "
 }
 
 ### 更新角色权限

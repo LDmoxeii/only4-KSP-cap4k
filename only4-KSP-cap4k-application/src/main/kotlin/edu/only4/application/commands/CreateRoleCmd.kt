@@ -3,6 +3,7 @@ package edu.only4.application.commands
 import com.only4.cap4k.ddd.core.Mediator
 import com.only4.cap4k.ddd.core.application.RequestParam
 import com.only4.cap4k.ddd.core.application.command.Command
+import edu.only4.domain.aggregates.role.AggRole
 import edu.only4.domain.aggregates.role.RolePermission
 import edu.only4.domain.aggregates.role.factory.RoleFactory
 import org.springframework.stereotype.Service
@@ -12,7 +13,8 @@ object CreateRoleCmd {
     @Service
     class Handler : Command<Request, Response> {
         override fun exec(request: Request): Response {
-            val role = Mediator.fac.create(
+            val role = Mediator.aggregates.create(
+                AggRole::class.java,
                 RoleFactory.Payload(
                     name = request.name,
                     description = request.description,

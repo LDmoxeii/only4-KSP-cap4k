@@ -1,12 +1,36 @@
-###
-POST {{host}}/cap4j/console/request/search
-    ?uuid={uuid}&type={type}&state={state}&scheduleAt={scheduleAtBegin}&
-    scheduleAt={scheduleAtEnd}&pageSize={pageSize}&pageNum={pageNum}
+### 架构信息
+POST {{host}}/cap4k/archinfo
 
-###
-POST {{host}}/cap4j/console/request/retry
-    ?uuid=1559b590-0054-4334-8552-3657e8cad5a4
+### 事件查询
+POST {{host}}/cap4j/console/event/search?
+    uuid=
+    #    &type=
+    #    &state=
+    #    &scheduleAt=
+    #    &scheduleAt=
+    #    &pageSize=
+    #    &pageNum=
 
-###
-POST {{host}}/cap4j/console/request/search
-    ?state=-3
+
+
+### 事件重试
+POST {{host}}/cap4j/console/event/retry?
+    uuid=
+
+
+
+### 请求查询
+POST {{host}}/cap4j/console/request/search?
+    uuid=
+    &type=
+&state=
+&scheduleAt=
+&scheduleAt=
+&pageSize=
+&pageNum=
+
+
+
+### 请求重试
+POST {{host}}/cap4j/console/request/retry?
+    uuid=
