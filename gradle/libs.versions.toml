@@ -12,7 +12,7 @@ spring-boot = "3.1.12"
 spring-dependency-management = "1.1.3"
 blazebit = "1.6.12"
 
-only4 = "0.2.4-SNAPSHOT"
+only4 = "0.2.6-SNAPSHOT"
 
 # Testing
 junit = "5.13.4"
@@ -28,7 +28,7 @@ kotlin-noarg-plugin = { module = "org.jetbrains.kotlin:kotlin-noarg", version.re
 spring-boot-dependencies = { module = "org.springframework.boot:spring-boot-dependencies", version.ref = "spring-boot" }
 spring-boot-starter = { module = "org.springframework.boot:spring-boot-starter", version.ref = "spring-boot" }
 spring-messaging = { module = "org.springframework:spring-messaging", version.ref = "spring-boot" }
-spring-actuator = { module = "org.springframework.boot:spring-boot-actuator" }
+spring-actuator = { module = "org.springframework.boot:spring-boot-starter-actuator" }
 spring-configuration-processor = { module = "org.springframework.boot:spring-boot-configuration-processor" }
 spring-web = { module = "org.springframework.boot:spring-boot-starter-web" }
 spring-validation = { module = "org.springframework.boot:spring-boot-starter-validation" }
