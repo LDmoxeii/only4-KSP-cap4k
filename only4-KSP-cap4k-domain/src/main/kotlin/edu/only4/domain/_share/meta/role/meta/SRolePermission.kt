@@ -2,6 +2,7 @@ package edu.only4.domain._share.meta.role.meta
 
 import edu.only4.domain._share.meta.Schema
 import edu.only4.domain.aggregates.role.RolePermission
+import edu.only4.domain.aggregates.role.RolePermission_
 import jakarta.persistence.criteria.CriteriaBuilder
 import jakarta.persistence.criteria.Path
 import jakarta.persistence.criteria.Predicate
@@ -17,29 +18,6 @@ class SRolePermission(
     private val root: Path<RolePermission>,
     private val criteriaBuilder: CriteriaBuilder,
 ) {
-    /**
-     * 属性字段集合
-     */
-    class PropertyNames {
-        /**
-         * ID
-         */
-        val id = "id"
-
-        /**
-         * 权限编码
-         */
-        val permissionCode = "permissionCode"
-
-        /**
-         * 逻辑删除
-         */
-        val delFlag = "delFlag"
-    }
-
-    companion object {
-        val props = PropertyNames()
-    }
 
     fun _criteriaBuilder(): CriteriaBuilder = criteriaBuilder
 
@@ -50,7 +28,7 @@ class SRolePermission(
      * bigint
      */
     fun id(): Schema.Field<Long> {
-        return Schema.Field(root.get(props.id), criteriaBuilder)
+        return Schema.Field(root.get(RolePermission_.ID), criteriaBuilder)
     }
 
     /**
@@ -58,15 +36,7 @@ class SRolePermission(
      * varchar(255)
      */
     fun permissionCode(): Schema.Field<String> {
-        return Schema.Field(root.get(props.permissionCode), criteriaBuilder)
-    }
-
-    /**
-     * 逻辑删除
-     * tinyint(1)
-     */
-    fun delFlag(): Schema.Field<Boolean> {
-        return Schema.Field(root.get(props.delFlag), criteriaBuilder)
+        return Schema.Field(root.get(RolePermission_.PERMISSION_CODE), criteriaBuilder)
     }
 
     /**

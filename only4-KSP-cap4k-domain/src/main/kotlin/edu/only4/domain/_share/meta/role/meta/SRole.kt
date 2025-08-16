@@ -6,6 +6,7 @@ import com.querydsl.core.types.OrderSpecifier
 import edu.only4.domain._share.meta.Schema
 import edu.only4.domain.aggregates.role.QRole
 import edu.only4.domain.aggregates.role.Role
+import edu.only4.domain.aggregates.role.Role_
 import jakarta.persistence.criteria.*
 import org.springframework.data.jpa.domain.Specification
 
@@ -20,39 +21,8 @@ class SRole(
     private val root: Path<Role>,
     private val criteriaBuilder: CriteriaBuilder,
 ) {
-    /**
-     * 属性字段集合
-     */
-    class PropertyNames {
-        /**
-         * ID
-         */
-        val id = "id"
-
-        /**
-         * 角色名
-         */
-        val name = "name"
-
-        /**
-         * 角色描述
-         */
-        val description = "description"
-
-        /**
-         * 逻辑删除
-         */
-        val delFlag = "delFlag"
-
-        /**
-         *
-         */
-        val rolePermissions = "rolePermissions"
-    }
 
     companion object {
-        val props = PropertyNames()
-
         /**
          * 构建查询条件
          *
@@ -386,7 +356,7 @@ class SRole(
      * bigint
      */
     fun id(): Schema.Field<Long> {
-        return Schema.Field(root.get(props.id), criteriaBuilder)
+        return Schema.Field(root.get(Role_.ID), criteriaBuilder)
     }
 
     /**
@@ -394,7 +364,7 @@ class SRole(
      * varchar(255)
      */
     fun name(): Schema.Field<String> {
-        return Schema.Field(root.get(props.name), criteriaBuilder)
+        return Schema.Field(root.get(Role_.NAME), criteriaBuilder)
     }
 
     /**
@@ -402,19 +372,11 @@ class SRole(
      * varchar(255)
      */
     fun description(): Schema.Field<String> {
-        return Schema.Field(root.get(props.description), criteriaBuilder)
-    }
-
-    /**
-     * 逻辑删除
-     * tinyint(1)
-     */
-    fun delFlag(): Schema.Field<Boolean> {
-        return Schema.Field(root.get(props.delFlag), criteriaBuilder)
+        return Schema.Field(root.get(Role_.DESCRIPTION), criteriaBuilder)
     }
 
     fun rolePermissions(): Schema.Field<List<edu.only4.domain.aggregates.role.RolePermission>> {
-        return Schema.Field(root.get(props.rolePermissions), criteriaBuilder)
+        return Schema.Field(root.get(Role_.ROLE_PERMISSIONS), criteriaBuilder)
     }
 
     /**
