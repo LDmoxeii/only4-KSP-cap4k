@@ -11,8 +11,6 @@ interface JRolePermission {
 
     val permissionCode: String
 
-    val permissionRemark: String?
-
     @LogicalDeleted("true")
     val delFlag: Boolean
 

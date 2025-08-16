@@ -1,11 +1,11 @@
 plugins {
     id("buildsrc.convention.kotlin-jvm")
     alias(libs.plugins.spring.boot)
-    alias(libs.plugins.spring.dependency.management)
 }
 
 dependencies {
-    implementation("org.yaml:snakeyaml")
+    api(libs.spring.boot.starter)
+    api(libs.spring.messaging)
     api(libs.spring.actuator)
     api(libs.spring.configuration.processor)
     api(libs.cap4k.console)

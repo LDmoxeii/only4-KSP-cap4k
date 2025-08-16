@@ -1,4 +1,4 @@
-###
+### 创建角色
 POST {{host}}/role/createRole
 Content-Type: application/json
 
@@ -8,51 +8,48 @@ Content-Type: application/json
   "permissionCodes": []
 }
 
-###
+### 获取所有角色
 POST {{host}}/role/getAllRoles
 
-###
+### 根据条件获取角色
 POST {{host}}/role/getRolesByCondition
 Content-Type: application/json
 
 {
-  "name": "测试聚合",
-  "description": "",
-  "permissionCodes": []
+  "description": "cd"
 }
 
-###
+### 获取角色详情
 POST {{host}}/role/getRoleById
 Content-Type: application/json
 
 {
-  "roleId": 201714621399171072
+  "roleId": 203870171763675136
 }
 
-###
+### 获取角色权限
 POST {{host}}/role/getRolePermissionsById
 Content-Type: application/json
 
 {
-  "roleId": 0
+  "roleId": 203870171763675136
 }
 
-###
+### 更新角色信息
 POST {{host}}/role/updateRoleInfo
 Content-Type: application/json
 
 {
-  "roleId": 201739262410932224,
-  "name": "测试更新详情",
-  "description": "测试更新详情"
+  "roleId": 203870171763675136,
+  "description": "测试更新详情cd "
 }
 
-###
+### 更新角色权限
 POST {{host}}/role/updateRolePermissions
 Content-Type: application/json
 
 {
-  "roleId": 201739262410932224,
+  "roleId": 203870171763675136,
   "permissionCodes": [
     "permission:create",
     "permission:update",
@@ -60,32 +57,10 @@ Content-Type: application/json
   ]
 }
 
-###
+### 删除角色
 POST {{host}}/role/deleteRole
 Content-Type: application/json
 
 {
-  "roleId": 0
+  "roleId": 203879959607902208
 }
-
-###
-POST {{host}}/test
-
-<> 2025-08-10T033728.200.txt
-
-###
-POST {{host}}/role/getRoleById
-Content-Type: application/json
-
-{
-  "roleId": 139861418236182528
-}
-
-###
-POST {{host}}/cap4j-ddd-mvc-example/test/role
-Content-Type: application/json
-
-"norm"
-
-###
-POST {{host}}/role/createRole

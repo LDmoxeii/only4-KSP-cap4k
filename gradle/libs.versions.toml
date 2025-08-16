@@ -26,6 +26,8 @@ kotlin-noarg-plugin = { module = "org.jetbrains.kotlin:kotlin-noarg", version.re
 
 # Spring framework
 spring-boot-dependencies = { module = "org.springframework.boot:spring-boot-dependencies", version.ref = "spring-boot" }
+spring-boot-starter = { module = "org.springframework.boot:spring-boot-starter", version.ref = "spring-boot" }
+spring-messaging = { module = "org.springframework:spring-messaging", version.ref = "spring-boot" }
 spring-actuator = { module = "org.springframework.boot:spring-boot-actuator" }
 spring-configuration-processor = { module = "org.springframework.boot:spring-boot-configuration-processor" }
 spring-web = { module = "org.springframework.boot:spring-boot-starter-web" }

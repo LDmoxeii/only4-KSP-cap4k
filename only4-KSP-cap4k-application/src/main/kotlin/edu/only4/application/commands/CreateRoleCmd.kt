@@ -33,7 +33,7 @@ object CreateRoleCmd {
     class Request(
         val name: String,
         val description: String,
-        val permissions: MutableList<RolePermission>,
+        val permissions: List<RolePermission>,
     ) : RequestParam<Response>
 
     class Response(

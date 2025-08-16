@@ -1,23 +1,23 @@
 package edu.only4.adapter.application.queries
 
 import com.only4.cap4k.ddd.core.application.query.Query
-import edu.only4.application.queries.ExistedRoleByNameQry
+import edu.only4.application.queries.ExistedRoleByIdQry
 import edu.only4.application.queries.model.JRole
-import edu.only4.application.queries.model.name
+import edu.only4.application.queries.model.id
 import org.babyfish.jimmer.sql.kt.KSqlClient
 import org.babyfish.jimmer.sql.kt.ast.expression.eq
 import org.babyfish.jimmer.sql.kt.exists
 import org.springframework.stereotype.Service
 
 @Service
-class ExistedRoleByNameQryHandler(
+class ExistedRoleByIdQryHandler(
     private val sqlClient: KSqlClient,
-) : Query<ExistedRoleByNameQry.Request, ExistedRoleByNameQry.Response> {
+) : Query<ExistedRoleByIdQry.Request, ExistedRoleByIdQry.Response> {
 
-    override fun exec(request: ExistedRoleByNameQry.Request): ExistedRoleByNameQry.Response {
-        return ExistedRoleByNameQry.Response(
+    override fun exec(request: ExistedRoleByIdQry.Request): ExistedRoleByIdQry.Response {
+        return ExistedRoleByIdQry.Response(
             sqlClient.exists(JRole::class) {
-                where(table.name.eq(request.name))
+                where(table.id.eq(request.roleId))
             }
         )
     }

@@ -2,7 +2,7 @@ package edu.only4.application.queries.model
 
 
 import org.babyfish.jimmer.sql.*
-import java.time.LocalDateTime
+import org.babyfish.jimmer.sql.kt.fetcher.newFetcher
 
 
 @Table(name = "role")
@@ -16,11 +16,24 @@ interface JRole {
 
     val description: String?
 
-    val createdAt: LocalDateTime
-
-    @LogicalDeleted("true")
-    val delFlag: Boolean
+    @LogicalDeleted
+    val delFlag: Long
 
     @OneToMany(mappedBy = "role")
     val rolePermissions: List<JRolePermission>
 }
+
+val ROLE =
+    newFetcher(JRole::class).by {
+        allTableFields()
+        rolePermissions {
+            allScalarFields()
+        }
+    }
+
+val ROLE_PERMISSION_INFO =
+    newFetcher(JRole::class).by {
+        rolePermissions {
+            permissionCode()
+        }
+    }

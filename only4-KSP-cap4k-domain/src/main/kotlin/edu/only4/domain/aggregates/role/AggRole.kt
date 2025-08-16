@@ -16,32 +16,27 @@ class AggRole(
     payload: RoleFactory.Payload? = null,
 ) : Aggregate.Default<Role>(payload) {
 
+    val id by lazy { root.id }
+
     class Id(key: Long) : com.only4.cap4k.ddd.core.domain.aggregate.Id.Default<AggRole, Long>(key)
 
-    fun getId(): Id {
-        return Id(root.id!!)
-    }
-
-    fun updateRoleInfo(name: String, description: String?) = with(root) {
-        root.name = name
+    fun updateRoleInfo(description: String?) = with(root) {
         root.description = description
         registerDomainEvent { UpdatedRoleInfoDomainEvent(root) }
     }
 
     fun updateRolePermission(newPermissions: List<RolePermission>) = with(root) {
-        val permissions = rolePermissions.toMutableList()
         val currentPermissionMap = rolePermissions.associateBy { it.permissionCode }
         val newPermissionMap = newPermissions.associateBy { it.permissionCode }
 
         // 移除不存在于新权限列表中的旧权限
         val toRemove = currentPermissionMap.keys - newPermissionMap.keys
-        permissions.removeAll { it.permissionCode in toRemove }
+        rolePermissions.removeAll { it.permissionCode in toRemove }
 
         // 添加新权限
         val toAdd = newPermissionMap.keys - currentPermissionMap.keys
-        permissions.addAll(toAdd.mapNotNull { newPermissionMap[it] })
+        rolePermissions.addAll(toAdd.mapNotNull { newPermissionMap[it] })
 
-        rolePermissions = permissions
         registerDomainEvent { UpdatedRolePermissionsDomainEvent(root) }
     }
 }

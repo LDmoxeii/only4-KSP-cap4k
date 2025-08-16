@@ -13,7 +13,7 @@ object DeleteRoleCmd {
     class Handler : Command<Request, Response> {
         override fun exec(request: Request): Response {
             val role = Mediator.aggregates.findOne(
-                JpaAggregatePredicate.byId(AggRole::class.java, AggRole.Id(request.roleId))
+                JpaAggregatePredicate.byId(AggRole::class.java, AggRole.Id(request.roleId).value)
             ).orElseThrow { IllegalArgumentException("Role with ID ${request.roleId} not found") }
 
             Mediator.uow.remove(role)

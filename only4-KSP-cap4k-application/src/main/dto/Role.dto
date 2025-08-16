@@ -1,0 +1,10 @@
+export edu.only4.application.queries.model.JRole
+    -> package edu.only4.application.queries.draft
+
+SimpleRole {
+    #allScalars(this)
+
+    rolePermissions {
+        #allScalars
+    }
+}

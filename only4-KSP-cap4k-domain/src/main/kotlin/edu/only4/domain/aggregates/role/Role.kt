@@ -1,6 +1,7 @@
 package edu.only4.domain.aggregates.role
 
 import com.only4.cap4k.ddd.core.domain.aggregate.annotation.Aggregate
+import com.only4.cap4k.ddd.domain.distributed.SnowflakeIdentifierGenerator
 import jakarta.persistence.*
 import jakarta.persistence.CascadeType
 import jakarta.persistence.Table
@@ -17,7 +18,7 @@ import org.hibernate.annotations.*
 @Table(name = "`role`")
 @DynamicInsert
 @DynamicUpdate
-@SQLDelete(sql = "update `role` set `del_flag` = 1 where `id` = ? ")
+@SQLDelete(sql = "update `role` set `del_flag` = `id` where `id` = ? ")
 @Where(clause = "`del_flag` = 0")
 class Role(
     @OneToMany(
@@ -26,14 +27,18 @@ class Role(
         orphanRemoval = true
     )
     @Fetch(FetchMode.SUBSELECT)
-    @JoinColumn(name = "`role_id`")
+    @JoinColumn(name = "`role_id`", referencedColumnName = "`id`", nullable = false)
     var rolePermissions: MutableList<RolePermission> = mutableListOf(),
     /**
      * ID
      * bigint
      */
     @Id
-    @GeneratedValue(generator = "snowflake")
+    @GenericGenerator(
+        name = "com.only4.cap4k.ddd.domain.distributed.SnowflakeIdentifierGenerator",
+        type = SnowflakeIdentifierGenerator::class
+    )
+    @GeneratedValue(generator = "com.only4.cap4k.ddd.domain.distributed.SnowflakeIdentifierGenerator")
     @Column(name = "`id`")
     var id: Long? = null,
 
