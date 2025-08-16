@@ -5,7 +5,6 @@ import jakarta.persistence.*
 import jakarta.persistence.CascadeType
 import jakarta.persistence.Table
 import org.hibernate.annotations.*
-import java.time.LocalDateTime
 
 @Aggregate(
     aggregate = "Role",
@@ -23,7 +22,7 @@ import java.time.LocalDateTime
 class Role(
     @OneToMany(
         cascade = [CascadeType.ALL],
-        fetch = FetchType.LAZY,
+        fetch = FetchType.EAGER,
         orphanRemoval = true
     )
     @Fetch(FetchMode.SUBSELECT)
@@ -54,14 +53,6 @@ class Role(
     @Basic(optional = true)
     @Column(name = "`description`")
     var description: String? = null,
-
-    /**
-     * 创建时间
-     * timestamp
-     */
-    @Basic(optional = false)
-    @Column(name = "`created_at`")
-    var createdAt: LocalDateTime = LocalDateTime.now(),
 ) {
     override fun equals(other: Any?) =
         this === other || (other is Role && name == other.name)

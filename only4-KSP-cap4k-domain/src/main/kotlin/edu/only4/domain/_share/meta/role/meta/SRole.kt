@@ -8,7 +8,6 @@ import edu.only4.domain.aggregates.role.QRole
 import edu.only4.domain.aggregates.role.Role
 import jakarta.persistence.criteria.*
 import org.springframework.data.jpa.domain.Specification
-import java.util.*
 
 /**
  * 角色表
@@ -39,11 +38,6 @@ class SRole(
          * 角色描述
          */
         val description = "description"
-
-        /**
-         * 创建时间
-         */
-        val createdAt = "createdAt"
 
         /**
          * 逻辑删除
@@ -409,14 +403,6 @@ class SRole(
      */
     fun description(): Schema.Field<String> {
         return Schema.Field(root.get(props.description), criteriaBuilder)
-    }
-
-    /**
-     * 创建时间
-     * timestamp
-     */
-    fun createdAt(): Schema.Field<Date> {
-        return Schema.Field(root.get(props.createdAt), criteriaBuilder)
     }
 
     /**

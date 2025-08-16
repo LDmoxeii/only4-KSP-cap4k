@@ -4,7 +4,7 @@ import com.only4.cap4k.ddd.core.domain.aggregate.annotation.Aggregate
 import com.only4.cap4k.ddd.core.domain.event.annotation.DomainEvent
 import edu.only4.domain.aggregates.role.Role
 
-@DomainEvent(persist = false)
+@DomainEvent(persist = true)
 @Aggregate(
     aggregate = "Role",
     name = "UpdatedRoleInfoDomainEvent",

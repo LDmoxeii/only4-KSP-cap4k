@@ -32,11 +32,6 @@ class SRolePermission(
         val permissionCode = "permissionCode"
 
         /**
-         * 权限备注
-         */
-        val permissionRemark = "permissionRemark"
-
-        /**
          * 逻辑删除
          */
         val delFlag = "delFlag"
@@ -64,14 +59,6 @@ class SRolePermission(
      */
     fun permissionCode(): Schema.Field<String> {
         return Schema.Field(root.get(props.permissionCode), criteriaBuilder)
-    }
-
-    /**
-     * 权限备注
-     * varchar(255)
-     */
-    fun permissionRemark(): Schema.Field<String> {
-        return Schema.Field(root.get(props.permissionRemark), criteriaBuilder)
     }
 
     /**

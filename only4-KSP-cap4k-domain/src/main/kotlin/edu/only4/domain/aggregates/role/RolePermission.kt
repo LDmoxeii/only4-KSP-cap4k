@@ -21,9 +21,6 @@ import org.hibernate.annotations.*
 @SQLDelete(sql = "update `role_permission` set `del_flag` = 1 where `id` = ? ")
 @Where(clause = "`del_flag` = 0")
 class RolePermission(
-    // 【行为方法开始】
-    // 【行为方法结束】
-    // 【字段映射开始】本段落由[cap4j-ddd-codegen-maven-plugin]维护，请不要手工改动
     /**
      * ID
      * bigint
