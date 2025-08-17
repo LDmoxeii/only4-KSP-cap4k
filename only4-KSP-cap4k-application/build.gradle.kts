@@ -9,8 +9,7 @@ dependencies {
     api(project(":only4-KSP-cap4k-domain"))
 
     api(libs.ddd.integration.event.http)
-    // 有BUG 暂不使用
-//    api(libs.ddd.integration.event.http.jpa)
+    api(libs.ddd.integration.event.http.jpa)
 
     implementation(libs.jimmer.core)
     compileOnly(libs.jimmer.sql)
