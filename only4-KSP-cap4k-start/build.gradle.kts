@@ -5,7 +5,6 @@ plugins {
 
 dependencies {
     api(libs.spring.boot.starter)
-    api(libs.spring.messaging)
     api(libs.spring.actuator)
     api(libs.spring.configuration.processor)
     api(libs.cap4k.console)

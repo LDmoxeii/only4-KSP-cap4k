@@ -12,7 +12,10 @@ spring-boot = "3.1.12"
 spring-dependency-management = "1.1.3"
 blazebit = "1.6.12"
 
-only4 = "0.2.6-SNAPSHOT"
+only4 = "0.2.7-SNAPSHOT"
+jimmer = "0.9.106"
+
+hibernate-core = "7.0.10.Final"
 
 # Testing
 junit = "5.13.4"
@@ -38,11 +41,15 @@ annotation = { module = "jakarta.annotation:jakarta.annotation-api" }
 blazebit-persistence-querydsl = { module = "com.blazebit:blaze-persistence-integration-querydsl-expressions-jakarta", version.ref = "blazebit" }
 blazebit-persistence-hibernate = { module = "com.blazebit:blaze-persistence-integration-hibernate-6.2", version.ref = "blazebit" }
 
-
 ddd-starter = { module = "com.only4:cap4k-ddd-starter", version.ref = "only4" }
-#ddd-starter = { module = "io.github.netcorepal:cap4j-ddd-starter", version = "3.1.0-alpha-2" }
-
 cap4k-console = { module = "com.only4:cap4k-ddd-console", version.ref = "only4" }
+
+jimmer-starter = { module = "org.babyfish.jimmer:jimmer-spring-boot-starter", version.ref = "jimmer" }
+jimmer-core = { module = "org.babyfish.jimmer:jimmer-core-kotlin", version.ref = "jimmer" }
+jimmer-sql = { module = "org.babyfish.jimmer:jimmer-sql-kotlin", version.ref = "jimmer" }
+jimmer-ksp = { module = "org.babyfish.jimmer:jimmer-ksp", version.ref = "jimmer" }
+
+hibernate-processor = { module = "org.hibernate.orm:hibernate-processor", version.ref = "hibernate-core" }
 
 druid = { module = "com.alibaba:druid-spring-boot-starter", version = "1.2.8" }
 mysql = { module = "com.mysql:mysql-connector-j", version = "8.1.0" }

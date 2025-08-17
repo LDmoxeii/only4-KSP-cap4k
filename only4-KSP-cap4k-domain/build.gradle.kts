@@ -11,7 +11,7 @@ dependencies {
     api("com.querydsl:querydsl-jpa:5.0.0:jakarta")
     kapt("com.querydsl:querydsl-apt:5.0.0:jakarta")
 
-    kapt("org.hibernate.orm:hibernate-processor:7.0.10.Final")
+    kapt(libs.hibernate.processor)
 
     api(libs.ddd.starter)
 }

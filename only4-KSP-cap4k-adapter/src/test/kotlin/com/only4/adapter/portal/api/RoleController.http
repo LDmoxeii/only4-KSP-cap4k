@@ -36,8 +36,8 @@ POST {{host}}/role/updateRoleInfo
 Content-Type: application/json
 
 {
-  "roleId": 203967287290953728,
-  "description": "测试强类型ID聚合查询 "
+  "roleId": 204229529840451584,
+  "description": "测试更新"
 }
 
 ### 更新角色权限
