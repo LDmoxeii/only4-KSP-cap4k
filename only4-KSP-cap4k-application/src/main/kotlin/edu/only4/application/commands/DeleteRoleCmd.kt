@@ -11,8 +11,9 @@ object DeleteRoleCmd {
     @Service
     class Handler : Command<Request, Response> {
         override fun exec(request: Request): Response {
-            Mediator.aggregates.getByIds(request.roleIds.map(AggRole::Id))
-                .onEach { Mediator.uow.remove(it) }
+            Mediator.aggregates.removeByIds(
+                request.roleIds.map(AggRole::Id)
+            )
 
             Mediator.uow.save()
 

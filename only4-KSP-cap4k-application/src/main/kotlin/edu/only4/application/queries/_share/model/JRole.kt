@@ -2,7 +2,6 @@ package edu.only4.application.queries._share.model
 
 
 import org.babyfish.jimmer.sql.*
-import org.babyfish.jimmer.sql.kt.fetcher.newFetcher
 
 
 @Table(name = "role")
@@ -22,11 +21,3 @@ interface JRole {
     @OneToMany(mappedBy = "role")
     val rolePermissions: List<JRolePermission>
 }
-
-val ROLE =
-    newFetcher(JRole::class).by {
-        allScalarFields()
-        rolePermissions {
-            allScalarFields()
-        }
-    }

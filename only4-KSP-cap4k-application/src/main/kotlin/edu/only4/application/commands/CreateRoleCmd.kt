@@ -3,6 +3,7 @@ package edu.only4.application.commands
 import com.only4.cap4k.ddd.core.Mediator
 import com.only4.cap4k.ddd.core.application.RequestParam
 import com.only4.cap4k.ddd.core.application.command.Command
+import edu.only4.application.validater.UniqueRoleName
 import edu.only4.domain.aggregates.role.AggRole
 import edu.only4.domain.aggregates.role.RolePermission
 import edu.only4.domain.aggregates.role.factory.RoleFactory
@@ -33,6 +34,7 @@ object CreateRoleCmd {
     }
 
     class Request(
+        @UniqueRoleName
         val name: String,
         val description: String,
         val permissions: List<RolePermission>,

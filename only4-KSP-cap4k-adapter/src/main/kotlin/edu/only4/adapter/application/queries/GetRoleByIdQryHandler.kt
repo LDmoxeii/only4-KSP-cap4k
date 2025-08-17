@@ -2,7 +2,7 @@ package edu.only4.adapter.application.queries
 
 import com.only4.cap4k.ddd.core.application.query.Query
 import edu.only4.application.queries.GetRoleByIdQry
-import edu.only4.application.queries._share.model.ROLE
+import edu.only4.application.queries._share.fetcher.RoleFetcher.ROLE
 import edu.only4.application.queries._share.model.id
 import org.babyfish.jimmer.sql.kt.KSqlClient
 import org.babyfish.jimmer.sql.kt.ast.expression.eq

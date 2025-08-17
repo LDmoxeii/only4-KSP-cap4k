@@ -2,35 +2,51 @@
 POST {{host}}/cap4k/archinfo
 
 ### 事件查询
-POST {{host}}/cap4j/console/event/search?
-    uuid=
-    #    &type=
-    #    &state=
-    #    &scheduleAt=
-    #    &scheduleAt=
-    #    &pageSize=
-    #    &pageNum=
-
-
+POST {{host}}/cap4k/console/event/search
+    ?uuid=e572e570-b07b-498d-9c9d-85d6ac6889f4
+#    &type=
+#    &state=
+#    &scheduleAt=
+#    &scheduleAt=
+#    &pageSize=
+#    &pageNum=
 
 ### 事件重试
-POST {{host}}/cap4j/console/event/retry?
-    uuid=
-
-
+POST {{host}}/cap4k/console/event/retry
+    ?uuid=e572e570-b07b-498d-9c9d-85d6ac6889f4
 
 ### 请求查询
-POST {{host}}/cap4j/console/request/search?
-    uuid=
-    &type=
-&state=
-&scheduleAt=
-&scheduleAt=
-&pageSize=
-&pageNum=
-
-
+POST {{host}}/cap4k/console/request/search
+    ?uuid=106f8802-84db-44b9-99eb-5c3590788d53
+#    &type=
+#    &state=
+#    &scheduleAt=
+#    &scheduleAt=
+#    &pageSize=
+#    &pageNum=
 
 ### 请求重试
-POST {{host}}/cap4j/console/request/retry?
-    uuid=
+POST {{host}}/cap4k/console/request/retry
+#    ?uuid=
+
+### 集成事件订阅
+POST {{host}}/cap4k/integration-event/http/subscribe
+#    ?event=
+#    &subscriber=
+
+### 集成事件退订
+POST {{host}}/cap4k/integration-event/http/unsubscribe
+#    ?event=
+#    &subscriber=
+
+### 集成事件列表
+POST {{host}}/cap4k/integration-event/http/events
+
+### 集成事件订阅者列表
+POST {{host}}/cap4k/integration-event/http/subscribers
+    ?event=UpdatedRoleInfoIntegrationEvent
+
+### 集成事件消费
+POST {{host}}/cap4k/integration-event/http/consume
+#    ?event=
+#    &uuid=

@@ -1,4 +1,4 @@
-package edu.only4.application.domain.subscribers
+package edu.only4.application.subscribers.domain
 
 import edu.only4.domain.aggregates.role.events.UpdatedRolePermissionsDomainEvent
 import org.springframework.stereotype.Service

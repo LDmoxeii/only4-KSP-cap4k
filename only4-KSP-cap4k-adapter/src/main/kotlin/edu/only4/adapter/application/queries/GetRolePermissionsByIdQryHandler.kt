@@ -11,12 +11,11 @@ import org.springframework.stereotype.Service
 @Service
 class GetRolePermissionsByIdQryHandler(
     private val sqlClient: KSqlClient,
-
     ) : Query<GetRolePermissionsByIdQry.Request, GetRolePermissionsByIdQry.Response> {
     override fun exec(request: GetRolePermissionsByIdQry.Request): GetRolePermissionsByIdQry.Response {
 
         return GetRolePermissionsByIdQry.Response(
-            sqlClient.findOne(RolePermissionInfo::class) {
+            sqlClient.findOneOrNull(RolePermissionInfo::class) {
                 where(table.id.eq(request.id))
             }
         )

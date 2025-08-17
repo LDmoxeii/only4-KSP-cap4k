@@ -11,10 +11,12 @@ import edu.only4.application.queries.GetRoleByIdQry
 import edu.only4.application.queries.GetRolePermissionsByIdQry
 import edu.only4.application.queries.GetRolesByConditionQry
 import edu.only4.application.queries._share.draft.JRole.RolePermissionInfo
+import edu.only4.application.queries._share.fetcher.RoleFetcher
 import edu.only4.application.queries._share.model.JRole
 import edu.only4.domain.aggregates.permission.Permission
 import edu.only4.domain.aggregates.role.RolePermission
 import org.babyfish.jimmer.client.FetchBy
+import org.babyfish.jimmer.client.meta.DefaultFetcherOwner
 import org.springframework.validation.annotation.Validated
 import org.springframework.web.bind.annotation.PostMapping
 import org.springframework.web.bind.annotation.RequestBody
@@ -22,6 +24,7 @@ import org.springframework.web.bind.annotation.RequestMapping
 import org.springframework.web.bind.annotation.RestController
 
 @RestController
+@DefaultFetcherOwner(RoleFetcher::class)
 @RequestMapping("role")
 class RoleController {
     @PostMapping("createRole")
@@ -34,6 +37,7 @@ class RoleController {
                     permissionCode = it.code,
                 )
             }
+
         Mediator.cmd.async(
             CreateRoleCmd.Request(
                 name = request.name,
@@ -80,11 +84,11 @@ class RoleController {
 
         val rolePermissions = role?.rolePermissions?.associateBy { it.permissionCode }
 
-        return role?.copy(allPermission.map { permissionCode ->
-            when (rolePermissions?.containsKey(permissionCode.code) == true) {
-                true -> rolePermissions[permissionCode.code]!!
+        return role?.copy(allPermission.map { permission ->
+            when (rolePermissions?.containsKey(permission.code) == true) {
+                true -> rolePermissions[permission.code]!!.copy(permissionRemark = permission.remark)
 
-                false -> RolePermissionInfo.TargetOf_rolePermissions(permissionCode.code, false)
+                false -> RolePermissionInfo.TargetOf_rolePermissions(permission.code, permission.remark, false)
             }
         })
     }

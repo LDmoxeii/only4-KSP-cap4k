@@ -12,7 +12,7 @@ spring-boot = "3.1.12"
 spring-dependency-management = "1.1.3"
 blazebit = "1.6.12"
 
-only4 = "0.2.7-SNAPSHOT"
+only4 = "0.2.8-SNAPSHOT"
 jimmer = "0.9.106"
 
 hibernate-core = "7.0.10.Final"
@@ -30,7 +30,6 @@ kotlin-noarg-plugin = { module = "org.jetbrains.kotlin:kotlin-noarg", version.re
 # Spring framework
 spring-boot-dependencies = { module = "org.springframework.boot:spring-boot-dependencies", version.ref = "spring-boot" }
 spring-boot-starter = { module = "org.springframework.boot:spring-boot-starter", version.ref = "spring-boot" }
-spring-messaging = { module = "org.springframework:spring-messaging", version.ref = "spring-boot" }
 spring-actuator = { module = "org.springframework.boot:spring-boot-starter-actuator" }
 spring-configuration-processor = { module = "org.springframework.boot:spring-boot-configuration-processor" }
 spring-web = { module = "org.springframework.boot:spring-boot-starter-web" }
@@ -41,8 +40,10 @@ annotation = { module = "jakarta.annotation:jakarta.annotation-api" }
 blazebit-persistence-querydsl = { module = "com.blazebit:blaze-persistence-integration-querydsl-expressions-jakarta", version.ref = "blazebit" }
 blazebit-persistence-hibernate = { module = "com.blazebit:blaze-persistence-integration-hibernate-6.2", version.ref = "blazebit" }
 
-ddd-starter = { module = "com.only4:cap4k-ddd-starter", version.ref = "only4" }
 cap4k-console = { module = "com.only4:cap4k-ddd-console", version.ref = "only4" }
+ddd-starter = { module = "com.only4:cap4k-ddd-starter", version.ref = "only4" }
+ddd-integration-event-http = { module = "com.only4:ddd-integration-event-http", version.ref = "only4" }
+ddd-integration-event-http-jpa = { module = "com.only4:ddd-integration-event-http-jpa", version.ref = "only4" }
 
 jimmer-starter = { module = "org.babyfish.jimmer:jimmer-spring-boot-starter", version.ref = "jimmer" }
 jimmer-core = { module = "org.babyfish.jimmer:jimmer-core-kotlin", version.ref = "jimmer" }
