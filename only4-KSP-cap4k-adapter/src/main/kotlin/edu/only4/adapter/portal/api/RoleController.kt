@@ -2,11 +2,6 @@ package edu.only4.adapter.portal.api
 
 import com.only4.cap4k.ddd.core.Mediator
 import edu.only4.adapter.portal.api.request.*
-import edu.only4.adapter.portal.api.response.GetAllRolesResponse
-import edu.only4.adapter.portal.api.response.GetRoleByIdResponse
-import edu.only4.adapter.portal.api.response.GetRolePermissionsByIdResponse
-import edu.only4.adapter.portal.api.response.GetRolesByConditionResponse
-import edu.only4.adapter.portal.api.response.common.RolePermissionResponse
 import edu.only4.application.commands.CreateRoleCmd
 import edu.only4.application.commands.DeleteRoleCmd
 import edu.only4.application.commands.UpdateRoleInfoCmd
@@ -15,8 +10,12 @@ import edu.only4.application.queries.GetAllRolesQry
 import edu.only4.application.queries.GetRoleByIdQry
 import edu.only4.application.queries.GetRolePermissionsByIdQry
 import edu.only4.application.queries.GetRolesByConditionQry
+import edu.only4.application.queries._share.draft.JRole.RolePermissionInfo
+import edu.only4.application.queries._share.model.JRole
 import edu.only4.domain.aggregates.permission.Permission
 import edu.only4.domain.aggregates.role.RolePermission
+import org.babyfish.jimmer.client.FetchBy
+import org.springframework.validation.annotation.Validated
 import org.springframework.web.bind.annotation.PostMapping
 import org.springframework.web.bind.annotation.RequestBody
 import org.springframework.web.bind.annotation.RequestMapping
@@ -26,7 +25,7 @@ import org.springframework.web.bind.annotation.RestController
 @RequestMapping("role")
 class RoleController {
     @PostMapping("createRole")
-    fun createRole(@RequestBody request: CreateRoleRequest) {
+    fun createRole(@RequestBody @Validated request: CreateRoleRequest) {
         val allPermissionCodes = Permission.getAllPermission()
         val permissionToBeAssigned = allPermissionCodes
             .filter { request.permissionCodes.contains(it.code) }
@@ -45,66 +44,53 @@ class RoleController {
     }
 
     @PostMapping("getAllRoles")
-    fun getAllRoles(): GetAllRolesResponse {
-        val result = Mediator.qry.send(GetAllRolesQry.Request()).roles
-        return GetAllRolesResponse(roles = result)
+    fun getAllRoles(): List<@FetchBy("ROLE") JRole> {
+        return Mediator.qry.send(GetAllRolesQry.Request()).roles
     }
 
     @PostMapping("getRolesByCondition")
-    fun getRolesByCondition(@RequestBody request: GetRolesByConditionRequest): GetRolesByConditionResponse {
-        val result = Mediator.qry.send(
+    fun getRolesByCondition(@RequestBody request: GetRolesByConditionRequest): List<@FetchBy("ROLE") JRole> {
+        return Mediator.qry.send(
             GetRolesByConditionQry.Request(
                 name = request.name,
                 description = request.description
             )
         ).roles
-
-        return GetRolesByConditionResponse(roles = result)
     }
 
     @PostMapping("getRoleById")
-    fun getRoleById(@RequestBody request: GetRoleByIdRequest): GetRoleByIdResponse {
-        val result = Mediator.qry.send(
+    fun getRoleById(@RequestBody request: Long): @FetchBy("ROLE") JRole? {
+        return Mediator.qry.send(
             GetRoleByIdQry.Request(
-                id = request.roleId
+                id = request
             )
         ).role
-
-        return GetRoleByIdResponse(role = result)
     }
 
     @PostMapping("getRolePermissionsById")
-    fun getRolePermissionsById(@RequestBody request: GetRolePermissionsByIdRequest): GetRolePermissionsByIdResponse {
+    fun getRolePermissionsById(@RequestBody request: Long): RolePermissionInfo? {
+
         val role = Mediator.qry.send(
             GetRolePermissionsByIdQry.Request(
-                id = request.roleId
+                id = request
             )
-        ).role ?: throw IllegalArgumentException("Role with ID ${request.roleId} does not exist")
+        ).role
 
         val allPermission = Permission.getAllPermission()
 
-        val permissionCodes = role.rolePermissions.map { it.permissionCode }.toSet()
+        val rolePermissions = role?.rolePermissions?.associateBy { it.permissionCode }
 
-        val result = allPermission.map { permissionCode ->
+        return role?.copy(allPermission.map { permissionCode ->
+            when (rolePermissions?.containsKey(permissionCode.code) == true) {
+                true -> rolePermissions[permissionCode.code]!!
 
-            when (permissionCodes.contains(permissionCode.code)) {
-                true -> RolePermissionResponse(
-                    permissionCode.code,
-                    assigned = true
-                )
-
-                false -> RolePermissionResponse(
-                    permissionCode.code,
-                    assigned = false
-                )
+                false -> RolePermissionInfo.TargetOf_rolePermissions(permissionCode.code, false)
             }
-        }
-
-        return GetRolePermissionsByIdResponse(permissions = result)
+        })
     }
 
     @PostMapping("updateRoleInfo")
-    fun updateRoleInfo(@RequestBody request: UpdateRoleInfoRequest) {
+    fun updateRoleInfo(@RequestBody @Validated request: UpdateRoleInfoRequest) {
         Mediator.cmd.async(
             UpdateRoleInfoCmd.Request(
                 roleId = request.roleId,
@@ -114,7 +100,7 @@ class RoleController {
     }
 
     @PostMapping("updateRolePermissions")
-    fun updateRolePermissions(@RequestBody request: UpdateRolePermissionsRequest) {
+    fun updateRolePermissions(@RequestBody @Validated request: UpdateRolePermissionsRequest) {
         val allPermission = Permission.getAllPermission()
         val permissionsToBeAssigned = allPermission
             .filter { request.permissionCodes.contains(it.code) }
@@ -133,13 +119,11 @@ class RoleController {
     }
 
     @PostMapping("deleteRole")
-    fun deleteRoleById(@RequestBody request: DeleteRoleRequest) {
+    fun deleteRoleById(@RequestBody request: List<Long>) {
         Mediator.cmd.async(
             DeleteRoleCmd.Request(
-                roleId = request.roleId
+                roleIds = request
             )
         )
     }
-
-
 }

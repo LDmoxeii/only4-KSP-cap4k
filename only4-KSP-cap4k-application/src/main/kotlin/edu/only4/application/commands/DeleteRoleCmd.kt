@@ -11,10 +11,9 @@ object DeleteRoleCmd {
     @Service
     class Handler : Command<Request, Response> {
         override fun exec(request: Request): Response {
-            val role = Mediator.aggregates.getById(AggRole.Id(request.roleId))
-                ?: throw IllegalArgumentException("Role with ID ${request.roleId} not found")
+            Mediator.aggregates.getByIds(request.roleIds.map(AggRole::Id))
+                .onEach { Mediator.uow.remove(it) }
 
-            Mediator.uow.remove(role)
             Mediator.uow.save()
 
             return Response(success = true)
@@ -23,7 +22,7 @@ object DeleteRoleCmd {
     }
 
     class Request(
-        val roleId: Long,
+        val roleIds: List<Long>,
     ) : RequestParam<Response>
 
     class Response(

@@ -1,7 +1,12 @@
 package edu.only4.adapter.portal.api.request
 
-class CreateRoleRequest(
-    val name: String = "",
-    val description: String = "",
-    val permissionCodes: List<String> = emptyList(),
+import jakarta.validation.constraints.NotBlank
+
+data class CreateRoleRequest(
+    @field:NotBlank(message = "用户名不能为空")
+    val name: String,
+
+    val description: String,
+
+    val permissionCodes: List<String>,
 )

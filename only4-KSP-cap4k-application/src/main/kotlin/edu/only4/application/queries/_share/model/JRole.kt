@@ -1,4 +1,4 @@
-package edu.only4.application.queries.model
+package edu.only4.application.queries._share.model
 
 
 import org.babyfish.jimmer.sql.*
@@ -25,15 +25,8 @@ interface JRole {
 
 val ROLE =
     newFetcher(JRole::class).by {
-        allTableFields()
+        allScalarFields()
         rolePermissions {
             allScalarFields()
-        }
-    }
-
-val ROLE_PERMISSION_INFO =
-    newFetcher(JRole::class).by {
-        rolePermissions {
-            permissionCode()
         }
     }

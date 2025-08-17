@@ -1,7 +1,7 @@
 package edu.only4.application.queries
 
 import com.only4.cap4k.ddd.core.application.RequestParam
-import edu.only4.application.queries.model.JRole
+import edu.only4.application.queries._share.model.JRole
 
 object GetRoleByNameQry {
     class Request(

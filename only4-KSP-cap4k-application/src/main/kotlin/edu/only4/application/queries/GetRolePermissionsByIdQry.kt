@@ -1,7 +1,7 @@
 package edu.only4.application.queries
 
 import com.only4.cap4k.ddd.core.application.RequestParam
-import edu.only4.application.queries.model.JRole
+import edu.only4.application.queries._share.draft.JRole.RolePermissionInfo
 
 object GetRolePermissionsByIdQry {
     class Request(
@@ -9,6 +9,6 @@ object GetRolePermissionsByIdQry {
     ) : RequestParam<Response>
 
     class Response(
-        val role: JRole? = null,
+        val role: RolePermissionInfo? = null,
     )
 }

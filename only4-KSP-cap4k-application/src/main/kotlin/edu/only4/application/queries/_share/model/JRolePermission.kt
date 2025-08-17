@@ -1,4 +1,4 @@
-package edu.only4.application.queries.model
+package edu.only4.application.queries._share.model
 
 import org.babyfish.jimmer.sql.*
 

@@ -1,10 +1,18 @@
-export edu.only4.application.queries.model.JRole
-    -> package edu.only4.application.queries.draft
+export edu.only4.application.queries._share.model.JRole
+    -> package edu.only4.application.queries._share.draft.JRole
 
 SimpleRole {
     #allScalars(this)
 
     rolePermissions {
         #allScalars
+    }
+}
+
+RolePermissionInfo {
+    rolePermissions {
+        permissionCode
+
+        assigned: Boolean = true
     }
 }
