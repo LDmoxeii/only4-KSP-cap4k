@@ -1,7 +1,10 @@
 package edu.only.ksp.adapter.portal.api
 
 import com.only4.cap4k.ddd.core.Mediator
-import edu.only.adapter.portal.api.request.*
+import edu.only.ksp.adapter.portal.api.request.CreateRoleRequest
+import edu.only.ksp.adapter.portal.api.request.GetRolesByConditionRequest
+import edu.only.ksp.adapter.portal.api.request.UpdateRoleInfoRequest
+import edu.only.ksp.adapter.portal.api.request.UpdateRolePermissionsRequest
 import edu.only.ksp.application.commands.CreateRoleCmd
 import edu.only.ksp.application.commands.DeleteRoleCmd
 import edu.only.ksp.application.commands.UpdateRoleInfoCmd
@@ -13,8 +16,8 @@ import edu.only.ksp.application.queries.GetRolesByConditionQry
 import edu.only.ksp.application.queries._share.draft.JRole.RolePermissionInfo
 import edu.only.ksp.application.queries._share.fetcher.RoleFetcher
 import edu.only.ksp.application.queries._share.model.JRole
+import edu.only.ksp.domain.aggregates.permission.Permission
 import edu.only.ksp.domain.aggregates.role.RolePermission
-import edu.only4.ksp.domain.aggregates.permission.Permission
 import org.babyfish.jimmer.client.FetchBy
 import org.babyfish.jimmer.client.meta.DefaultFetcherOwner
 import org.springframework.validation.annotation.Validated

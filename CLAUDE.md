@@ -36,8 +36,8 @@ All packages use the `edu.only` namespace:
 
 - Domain aggregates: `edu.only.ksp.domain.aggregates`
 - Application commands/queries: `edu.only.ksp.application.commands`, `edu.only.ksp.application.queries`
-- REST APIs: `edu.only.adapter.portal.api`
-- Infrastructure: `edu.only.adapter.domain.repositories`
+- REST APIs: `edu.only.ksp.adapter.portal.api`
+- Infrastructure: `edu.only.ksp.adapter.domain.repositories`
 
 ### Key Patterns
 
