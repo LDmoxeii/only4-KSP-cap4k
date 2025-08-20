@@ -52,6 +52,7 @@ logging:
   level:
     sql: DEBUG
     org.hibernate.orm.jdbc.bind: TRACE
+    org.springframework.boot.autoconfigure.condition: DEBUG
 
 server:
   port: 8081
@@ -88,18 +89,26 @@ jimmer:
   show-sql: true
   pretty-sql: true
 
+
+only:
+  web:
+    filter:
+      thread-local:
+        enable: false
+    result-wrapper:
+      enable: true
 cap4k:
   ddd:
     archinfo:
       enabled: true
-      base-package: edu.only4
+      base-package: edu.only
     distributed:
       idgenerator:
         snowflake:
           enable: true
     domain:
       event:
-        event-scan-package: edu.only4
+        event-scan-package: edu.only
         schedule:
           add-partition-enable: false
     application:

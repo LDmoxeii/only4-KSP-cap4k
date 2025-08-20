@@ -11,6 +11,9 @@ dependencies {
 
     api(libs.jimmer.starter)
     api(libs.blazebit.persistence.hibernate)
+
+    api(libs.engine.common)
+    api(libs.engine.web.starter)
     implementation(libs.blazebit.persistence.querydsl)
 
     api(project(":only4-KSP-cap4k-application"))

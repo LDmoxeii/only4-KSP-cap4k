@@ -32,12 +32,12 @@ project using the cap4k framework.
 
 ### Package Structure
 
-All packages use the `edu.only4` namespace:
+All packages use the `edu.only` namespace:
 
-- Domain aggregates: `edu.only4.domain.aggregates`
-- Application commands/queries: `edu.only4.application.commands`, `edu.only4.application.queries`
-- REST APIs: `edu.only4.adapter.portal.api`
-- Infrastructure: `edu.only4.adapter.domain.repositories`
+- Domain aggregates: `edu.only.ksp.domain.aggregates`
+- Application commands/queries: `edu.only.ksp.application.commands`, `edu.only.ksp.application.queries`
+- REST APIs: `edu.only.adapter.portal.api`
+- Infrastructure: `edu.only.adapter.domain.repositories`
 
 ### Key Patterns
 

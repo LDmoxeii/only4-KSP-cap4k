@@ -1,5 +1,5 @@
-export edu.only4.application.queries._share.model.JRole
-    -> package edu.only4.application.queries._share.draft.JRole
+export edu.only.ksp.application.queries._share.model.JRole
+    -> package edu.only.ksp.application.queries._share.draft.JRole
 
 RolePermissionInfo {
     rolePermissions {
