@@ -1,5 +1,6 @@
 package edu.only.ksp.application.commands
 
+import com.only.engine.exception.KnownException
 import com.only4.cap4k.ddd.core.Mediator
 import com.only4.cap4k.ddd.core.application.RequestParam
 import com.only4.cap4k.ddd.core.application.command.Command
@@ -15,7 +16,7 @@ object UpdateRoleInfoCmd {
 
             Mediator.aggregates.getById(AggRole.Id(request.roleId))?.apply {
                 updateRoleInfo(request.description)
-            } ?: throw IllegalArgumentException("Role with ID ${request.roleId} not found")
+            } ?: throw KnownException("Role with ID ${request.roleId} not found")
 
             Mediator.uow.save()
 

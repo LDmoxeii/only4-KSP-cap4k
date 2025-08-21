@@ -3,7 +3,7 @@ POST {{host}}/role/createRole
 Content-Type: application/json
 
 {
-  "name": "新建角色带权限12345",
+  "name": "新建角色带权限123456",
   "description": "测试聚合描述",
   "permissionCodes": [
     "permission:create",
@@ -27,21 +27,21 @@ Content-Type: application/json
 POST {{host}}/role/getRoleById
 Content-Type: application/json
 
-204335870965821440
+205809655577587712
 
 ### 获取角色权限
 POST {{host}}/role/getRolePermissionsById
 Content-Type: application/json
 
-204318305698803712
+205809655577587712
 
 ### 更新角色信息
 POST {{host}}/role/updateRoleInfo
 Content-Type: application/json
 
 {
-  "roleId": 204335870965821440,
-  "description": "测试更新"
+  "roleId": 205809655577587712,
+  "description": "没有你也更新？"
 }
 
 ### 更新角色权限
@@ -49,11 +49,10 @@ POST {{host}}/role/updateRolePermissions
 Content-Type: application/json
 
 {
-  "roleId": 203870171763675136,
+  "roleId": 205809655577587712,
   "permissionCodes": [
     "permission:create",
-    "permission:update",
-    "permission:delete"
+    "permission:update"
   ]
 }
 
@@ -62,6 +61,5 @@ POST {{host}}/role/deleteRole
 Content-Type: application/json
 
 [
-  204229529840451584,
-  204318305698803712
+  205809655577587712
 ]
